@@ -566,14 +566,15 @@ export default {
       }
       echarts.init(document.getElementById('div1')).setOption({
         tooltip: {
-          trigger: 'item',
+          trigger: 'axis',
+          confine: true,
           formatter(params) {
             console.log(params)
-            let str = '\n'
+            let str = ''
             listData.filter(item => item.categoryName === params[0].axisValue)[0].data.forEach(aa => {
-                str+= aa.brand + '\n' + aa.data + '人' + '\n占全部餐饮：' + getPercent(aa.data, totalObj[params[0].axisValue])
+                str+= '<br>' + aa.brand + '<br>' + aa.data + '人' + '<br>占全部餐饮：' + getPercent(aa.data, totalObj[params[0].axisValue])
               })
-            return `${params[0].axisValue} ${that.queryForm.yearRange[0]}~${that.queryForm.yearRange[1]}占全部业态${getPercent(params[0].data, allTotal)}
+            return `${params[0].axisValue} ${that.queryForm.yearRange[0]}~${that.queryForm.yearRange[1]}占全部业态${getPercent(totalObj[params[0].axisValue], allTotal)}
               ${str}
             `
           },
