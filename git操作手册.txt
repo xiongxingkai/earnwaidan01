@@ -1,0 +1,24 @@
+一、先有本地仓库的开发形式
+
+1.先在github网站登录个人账户，新建一个仓库（new Repository）
+2.填写仓库名称，仓库描述可选填，其他不填
+3.复制仓库的ssh地址备用
+4.在本地项目文件根目录打开控制台 运行 git init 命令 生成本地代码仓库
+5.然后执行  git add .  指令，将项目文件添加到本地仓库暂存区
+6.再执行 git commit -m '提交代码描述信息' 指令将代码提交本地分支
+7.执行 git remote add origin git@github.com:xiongxingkai/earnwaidan01.git 
+  指令 将本地仓库与远程仓库关联 （此处的仓库地址是个例子，不同仓库使用不同的地址）
+8.执行 git push -u origin master 把当前分支master推送到远程
+
+二、先有远程仓库的开发形式
+
+1.先在github网站登录个人账户，新建一个仓库（new Repository）
+2.填写仓库名称，仓库描述可选填，
+3.我们勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件。创建完毕后，可以看到README.md文件：
+4.现在，远程库已经准备好了，下一步是用命令git clone克隆一个本地库：
+5. git clone git@github.com:xiongxingkai/earnwaidan01.git
+6.如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。
+
+你也许还注意到，GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
