@@ -4,10 +4,10 @@ import {
   MessageBox,
   Notification
 } from 'element-ui'
-import store from '@store'
+// import store from '@/store'
 import {
   getToken
-} from '@utils/auth'
+} from '@/utils/auth'
 import configJs from '../../config/config.js'
 
 let cancel
