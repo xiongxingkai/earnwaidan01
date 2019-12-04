@@ -23,6 +23,10 @@ export default {
           title: '顾客偏好业态',
           url: '/consumer-nalysis'
         },
+        {
+          title: '用户画像分析',
+          url: '/picture-board'
+        },
       ]
     }
   }
