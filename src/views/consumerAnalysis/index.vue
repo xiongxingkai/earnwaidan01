@@ -47,6 +47,8 @@
             <el-form-item label="日期">
               <el-date-picker size="small"
                               v-model="queryForm.dateRange"
+                              value-format="yyyy/MM/dd"
+                              format="yyyy/MM/dd"
                               type="daterange"
                               range-separator="~"
                               start-placeholder="开始日期"
@@ -176,6 +178,7 @@ export default {
       this.doSearch()
     },
     doSearch () {
+      console.log(this.queryForm)
       const loading = this.$loading({
         lock: true,
         text: 'Loading',
@@ -571,10 +574,10 @@ export default {
           formatter(params) {
             console.log(params)
             let str = ''
-            listData.filter(item => item.categoryName === params[0].axisValue)[0].data.forEach(aa => {
-                str+= '<br>' + aa.brand + '<br>' + aa.data + '人' + '<br>占全部餐饮：' + getPercent(aa.data, totalObj[params[0].axisValue])
+            listData.filter(item => item.categoryName === params[0].axisValue)[0].data.forEach((aa,index) => {
+                str+= `<br><span style="display: inline-block;width:6px;height:6px;vertical-align: middle;margin: 0 5px;background: ${params[index].color}"></span>${aa.brand}<br>${aa.data}人<br>占全部餐饮：&nbsp;&nbsp;&nbsp;${getPercent(aa.data, totalObj[params[0].axisValue])}`
               })
-            return `${params[0].axisValue} ${that.queryForm.yearRange[0]}~${that.queryForm.yearRange[1]}占全部业态${getPercent(totalObj[params[0].axisValue], allTotal)}
+            return `${params[0].axisValue} ${that.queryForm.dateRange[0]}~${that.queryForm.dateRange[1]}占全部业态${getPercent(totalObj[params[0].axisValue], allTotal)}
               ${str}
             `
           },
