@@ -21,5 +21,10 @@ export default new Router({
       name: 'consumerAnalysis',
       component: () => import('@/views/consumerAnalysis')
     },
+    {
+      path: '/picture-board',
+      name: 'pictureboard',
+      component: () => import('@/views/pictureBoard')
+    },
   ]
 })
