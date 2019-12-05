@@ -72,77 +72,77 @@ export default {
     initData() {
       this.echartData1= [
         {
-          category: '1~20',
+          age_duration: '1~20',
           gender: '男性',
-          num: 831
+          count: 831
         },
         {
-          category: '1~20',
+          age_duration: '1~20',
           gender: '女性',
-          num: 738
+          count: 738
         },
         {
-          category: '21~30',
+          age_duration: '21~30',
           gender: '男性',
-          num: 1023
+          count: 1023
         },
         {
-          category: '21~30',
+          age_duration: '21~30',
           gender: '女性',
-          num: 512
+          count: 512
         },
         {
-          category: '31~40',
+          age_duration: '31~40',
           gender: '男性',
-          num: 531
+          count: 531
         },
         {
-          category: '31~40',
+          age_duration: '31~40',
           gender: '女性',
-          num: 838
+          count: 838
         },
         {
-          category: '41~50',
+          age_duration: '41~50',
           gender: '男性',
-          num: 931
+          count: 931
         },
         {
-          category: '41~50',
+          age_duration: '41~50',
           gender: '女性',
-          num: 938
+          count: 938
         },
         {
-          category: '51~60',
+          age_duration: '51~60',
           gender: '男性',
-          num: 557
+          count: 557
         },
         {
-          category: '51~60',
+          age_duration: '51~60',
           gender: '女性',
-          num: 248
+          count: 248
         },
         {
-          category: '61~70',
+          age_duration: '61~70',
           gender: '男性',
-          num: 365
+          count: 365
         },
         {
-          category: '61~70',
+          age_duration: '61~70',
           gender: '女性',
-          num: 403
+          count: 403
         },
         {
-          category: '>70',
+          age_duration: '>70',
           gender: '男性',
-          num: 57
+          count: 57
         },
         {
-          category: '>70',
+          age_duration: '>70',
           gender: '女性',
-          num: 38
+          count: 38
         }
       ]
-      this.echartData1.sort((a, b) => a.num - b.num)
+      this.echartData1.sort((a, b) => a.count - b.count)
     },
     initMap() {
       const that = this
@@ -278,13 +278,13 @@ export default {
             },
             barWidth: 16,
             data: that.echartData1.map(
-              item => `${item.category},  ${item.gender},  ${item.num}`
+              item => `${item.age_duration},  ${item.gender},  ${item.count}`
             )
           },
           series: [
             {
               type: 'bar',
-              data: that.echartData1.map(item => item.num),
+              data: that.echartData1.map(item => item.count),
               itemStyle: {
                 color: function(params) {
                   // console.log('输出', params)
@@ -442,13 +442,13 @@ export default {
             },
             barWidth: 16,
             data: that.echartData1.map(
-              item => `${item.category},  ${item.gender},  ${item.num}`
+              item => `${item.age_duration},  ${item.gender},  ${item.count}`
             )
           },
           series: [
             {
               type: 'bar',
-              data: that.echartData1.map(item => item.num),
+              data: that.echartData1.map(item => item.count),
               itemStyle: {
                 color: function(params) {
                   // console.log('输出', params)
