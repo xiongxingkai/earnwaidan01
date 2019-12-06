@@ -211,20 +211,21 @@ export default {
         ],
         yAxis: [
           {
-            type: 'value',
-            barWidth: 30
+            type: 'value'
           }
         ],
         series: [
           {
             name: '女性',
             type: 'bar',
+            barWidth: 30,
             stack: '占比',
             data: [120, 65, 78, 20, 90, 30, 102]
           },
           {
             name: '男性',
             type: 'bar',
+            barWidth: 30,
             stack: '占比',
             data: [40, 60, 62, 80, 160, 92, 45]
           }
@@ -276,7 +277,6 @@ export default {
             axisTick: {
               show: false
             },
-            barWidth: 16,
             data: that.echartData1.map(
               item => `${item.age_duration},  ${item.gender},  ${item.count}`
             )
@@ -284,6 +284,7 @@ export default {
           series: [
             {
               type: 'bar',
+              barWidth: 16,
               data: that.echartData1.map(item => item.count),
               itemStyle: {
                 color: function(params) {
@@ -375,8 +376,7 @@ export default {
         ],
         yAxis: [
           {
-            type: 'value',
-            barWidth: 30
+            type: 'value'
           }
         ],
         series: [
@@ -384,11 +384,13 @@ export default {
             name: '女性',
             type: 'bar',
             stack: '占比',
+            barWidth: 30,
             data: [120, 65, 78, 20, 90, 30, 102]
           },
           {
             name: '男性',
             type: 'bar',
+            barWidth: 30,
             stack: '占比',
             data: [40, 60, 62, 80, 160, 92, 45]
           }
@@ -440,7 +442,6 @@ export default {
             axisTick: {
               show: false
             },
-            barWidth: 16,
             data: that.echartData1.map(
               item => `${item.age_duration},  ${item.gender},  ${item.count}`
             )
@@ -448,6 +449,7 @@ export default {
           series: [
             {
               type: 'bar',
+              barWidth: 16,
               data: that.echartData1.map(item => item.count),
               itemStyle: {
                 color: function(params) {
