@@ -1,36 +1,70 @@
 <template>
-  <div class="navbar clearfix">
-    <div class="fl logoArea">
-      <img src="@/assets/images/logo.png" alt="logo">
-      <h3 class="sggtitle">智慧超商数据平台</h3>
+  <el-menu class="navbar" mode="horizontal">
+    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.openend"></hamburger> -->
+
+    <sidebar-item :routes="permissionTopMenus"></sidebar-item>
+    <div class="left-menu">
+      <h3 class="sggtitle">深圳高速工程顾问有限公司</h3>
+      <ul class="menu">
+        <li>
+          <!-- 首页 -->
+          <router-link :to="{path: '/dashboard'}">{{$t('navbar.dashboard')}}</router-link>
+        </li>
+        <li>
+          <router-link :to="{path: '/datacenter'}">数据中心</router-link>
+        </li>
+
+        <li v-for="item in permissionTopMenus" @click="getSubMenu(item)" :index="item.title" :key="item.name">{{item.title}}</li>
+
+        <li>
+          <!-- 个人中心 -->
+          <router-link :to="{path: '/personal'}">{{$t('navbar.personal')}}</router-link>
+        </li>
+      </ul>
     </div>
-    <div class="fr userInfoArea">
-      <div class="companyArea">
-        <img src="@/assets/images/company.png" >
+    <div class="left-menu">
+      <div style="float: left;width: 245px;">
+        <h3 class="sggtitle"></h3>
       </div>
-      <el-dropdown class="avatar-container right-menu-item" trigger="click">
-          <div class="avatar-wrapper" title="管理员">
-            <img src="@/assets/images/user.png"  class="user-avatar">
+
+      <el-col :span="16">
+        <ul class="menu">
+          <li v-if="$store.getters.cachedViews[0]!=='自助录入'">
+            <router-link :to="{path: '/dashboard'}">{{$t(navbar.dashboard)}}</router-link>
+          </li>
+          <li v-if="$store.getters.cachedViews[0]!=='自助录入'">
+            <router-link :to="{path: '/datacenter'}">数据中心</router-link>
+          </li>
+          <li v-for="item in permissionTopMenus" @click="getSubMenu(item)" :index="item.title" :key="item.name">{{item.title}}</li>
+          <li v-if="$store.getters.cachedViews[0]!=='自助录入'">
+            <router-link :to="{path: '/personal'}">{{$t(navbar.personal)}}</router-link>
+          </li>
+        </ul>
+      </el-col>
+      <div style="float: rigth;padding-right: 15px;">
+        <el-dropdown class="avatar-container right-menu-item" trigger="click">
+          <div class="avatar-wrapper" :title="$store.getters.name">
+            <img src="avatar+'?imageView2/1/w/80/h/80'"  class="user-avatar">
             <svg-icon icon-class="user" class-name="card-panel-icon" style="width: 22px;height:22px;color:#fff;vertical-align:middle; "/>
             <i class="el-icon-caret-bottom" style="color: #fff;vertical-align: middle;"></i>
             <span class="name" style="color:#fff;vertical-align:middle;">{{deptName}}:{{name}}</span>
           </div>
           <!-- 顶部栏右侧个人下拉 -->
           <el-dropdown-menu slot="dropdown">
-            <router-link to="/personal">
+            <router-link to="/personal" v-if="$store.getters.cachedViews[0]!=='自助录入'">
               <el-dropdown-item>
-                个人资料
+                {{$t(navbar.personal)}}
               </el-dropdown-item>
             </router-link>
-            <router-link to="/dashboard">
+            <router-link to="/dashboard" v-if="$store.getters.cachedViews[0]!=='自助录入'">
               <el-dropdown-item>
-                修改密码
+                {{$t(navbar.dashboard)}}
               </el-dropdown-item>
             </router-link>
 
             <router-link to="/datacenter">
               <el-dropdown-item>
-                退出登录
+                数据中心
               </el-dropdown-item>
             </router-link>
             <a href="http://10.0.7.132:9010/swagger/" target="_blank">
@@ -51,9 +85,18 @@
 
           </el-dropdown-menu>
         </el-dropdown>
+      </div>
     </div>
-    
-  </div>
+
+    <div class="right-menu">
+      <!-- 错误消息提示 -->
+      <error-log class="errLog-container right-menu-item"></error-log>
+      <!-- 全屏按钮 -->
+      <el-tooltip effect="dark" :content="$t('navbar.screenfull')" placement="left">
+        <screenfull class="screenfull right-menu-item"></screenfull>
+      </el-tooltip>
+    </div>
+  </el-menu>
 </template>
 
 <script>
@@ -114,11 +157,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// @media (min-width: 1500px) {
+//   .sggtitle {
+//     background-size: 62%;
+//   }
+// }
+// @media (min-width: 1300px) and (max-width: 1499px) {
+//   .sggtitle {
+//     background-size: 80%;
+//   }
+// }
+// @media (min-width: 1000px) and (max-width: 1299px) {
+//   .sggtitle {
+//     background-size: 80%;
+//   }
+// }
 .navbar {
-  height: 60px;
-  line-height: 60px;
+  // height: 60px;
+  // line-height: 60px;
+  margin-bottom: 10px;
+  border: 0;
+  border-radius: 0 !important;
+  background-color: #304156;
+  color: #fff;
+  .hamburger-container {
+    display: none;
+    height: 60px;
+    line-height: 60px;
+    float: left;
+    padding: 0 10px;
+  }
+  .breadcrumb-container {
+    float: left;
+  }
+  .errLog-container {
+    display: inline-block;
+    vertical-align: top;
+  }
   // 左边菜单栏
   .left-menu {
+    // float: left;
+    height: 100%;
+    .menu {
+      list-style: none;
+      min-width: 1005px;
+    }
     .sggtitle {
       // float: left;
       height: 60px;
@@ -127,6 +210,13 @@ export default {
       background: url(../../../assets/img/logo3.png) no-repeat 0 center;
       background-size: 62%;
       padding-left: 36px;
+    }
+    .menu {
+      float: left;
+      li {
+        float: left;
+        cursor: pointer;
+      }
     }
   }
   .right-menu {
