@@ -132,3 +132,107 @@ git config --global user.email "email@example.com"
 2.在指定目录下打开控制台 输入 serve 文件目录路径 就可以在控制台显示的路径地址下查看页面了
 例如 想查看vue项目目录下的dist文件中的index.html文件  可以在vue项目的根目录下打开控制台，输入 serve dist 命令就可以查看了
 
+
+
+
+
+   =======================================================================================================================
+   ====================================== vue  项目打中使用水行图 =================================================================================
+   =======================================================================================================================
+   ECharts 水球图是作为扩展存在的，因此不在 ECharts 项目中，
+1.先通过 cnpm install --save echarts-liquidfill   安装
+  import  echarts from 'echarts';
+  import 'echarts-liquidfill';
+
+  echarts.init(document.getElementById('div1')).setOption({
+    series: [
+      {
+        type: 'liquidFill',
+        data: [0.5, 0.4, 0.3, 0.2] // 长度可以为1 显示不规则圆弧高亮去 
+      },
+      {
+        type: 'liquidFill',
+        data: [],
+        color: ['#294D99', '#156ACF', '#1598ED', '#45BDFF'],
+        center: ['50%', '50%'],
+        radius: '50%',
+        amplitude: '8%',
+        waveLength: '80%',
+        phase: 'auto',
+        period: 'auto',
+        direction: 'right',
+        shape: 'circle',
+
+        waveAnimation: true,
+        animationEasing: 'linear',
+        animationEasingUpdate: 'linear',
+        animationDuration: 2000,
+        animationDurationUpdate: 1000,
+
+        outline: {
+            show: true,
+            borderDistance: 8,
+            itemStyle: {
+                color: 'none',
+                borderColor: '#294D99',
+                borderWidth: 8,
+                shadowBlur: 20,
+                shadowColor: 'rgba(0, 0, 0, 0.25)'
+            }
+        },
+
+        backgroundStyle: {
+            color: '#E3F7FF'
+        },
+
+        itemStyle: {
+            opacity: 0.95,
+            shadowBlur: 50,
+            shadowColor: 'rgba(0, 0, 0, 0.4)'
+        },
+
+        label: {
+            show: true,
+            color: '#294D99',
+            insideColor: '#fff',
+            fontSize: 50,
+            fontWeight: 'bold',
+            align: 'center',
+            baseline: 'middle'
+            position: 'inside'
+        },
+
+        emphasis: {
+            itemStyle: {
+                opacity: 0.8
+            }
+        }
+      },
+      {
+        type: 'liquidFill',
+        data: [0.6, {
+            value: 0.5,
+            itemStyle: {
+                color: 'red'
+            }
+        }, 0.4, 0.3]
+      },
+      {
+        type: 'liquidFill',
+        data: [0.6, 0.5, 0.4, 0.3],
+        radius: '70%',
+        phase: 0,
+        period: function (value, index) {
+            // This function is called four times, each for a data item in series.
+            // `value` is 0.6, 0.5, 0.4, 0.3, and `index` is 0, 1, 2, 3.
+            return 2000 * index + 1000;
+        }
+      }
+
+
+    ]
+  })
+
+
+
+
