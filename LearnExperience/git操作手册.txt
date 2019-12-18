@@ -1,0 +1,295 @@
+一、先下载git,并安装，然后就可以在命令窗口输入git 查看是否安装成功，显示git 各种命令提示后说明安装成功了
+安装成功后，安装完成后，还需要最后一步设置，在命令行输入：
+
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+
+因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。你也许会担心，如果有人故意冒充别人怎么办？这个不必担心，首先我们相信大家都是善良无知的群众，其次，真的有冒充的也是有办法可查的。
+
+注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+
+上述设置完成后可以再指定目录下打开控制台输入 git  init 指令，就可以在当前目录下创建一个git 仓库了，然后开始工作了，对目录中的文件进行增删改查操作后，
+
+1.先通过 执行命令
+ git status 
+ 查看当前目录下文件的改动状态
+
+2.通过执行命令
+ git add . 
+ 或者 
+ git add  (shift + inset 键 快速插入改动的文件路径)  
+ 将改动的文件由工作区添加到 git 仓库的暂存区， 如果添加完想撤销添加的话，
+    可以执行命令
+      git reset HEADER 文件名 
+    就可以将上一步添加到暂存区的该文件还原回工作区
+
+3.添加到暂存区后 执行命令
+  git commit -m '提交描述'  
+  将暂存区的文件提交到git仓库的当前分支
+  如果想回退刚才的提交，可以执行命令
+    git reset --hard HEADER^         // 一个 ^ 表示回退到当前版本的往上一个版本 ^^ 表示回退到当前版本的往上两个版本  如回退n个版本可以用 HEADER~n
+    
+
+    git reset --hard HEADER~1 等价于 git reset --hard HEADER^
+
+    git branch 分支名  // 新建一个分支
+
+    git checkout 分支名 // 切换到指定的分支
+
+    git checkout - b  分支名   // 从当前分支拷贝出一个新分支 并切换到该新分支
+
+    git checkout  -- 文件名   // 从当前分支 还原 工作区对指定文件的改动
+
+  4.推送到远程仓库
+     第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，
+     如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：执行指令
+     ssh-keygen -t rsa -C "youremail@example.com"        // 换成自己指定的邮箱地址
+
+     你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。
+
+      如果一切顺利的话，可以在用户主目录 ( C:\Users\Administrator\.ssh ) 里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，
+      
+      id_rsa.pub是公钥，可以放心地告诉任何人。
+
+      第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+
+      然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
+
+      这样我们就可以从远程仓库克隆代码或者推送代码到远程分支了
+
+
+二、先有本地仓库的开发形式
+
+1.先在github网站登录个人账户，新建一个仓库（new Repository）
+2.填写仓库名称，仓库描述可选填，其他不填
+3.复制仓库的ssh地址备用
+4.在本地项目文件根目录打开控制台 运行 git init 命令 生成本地代码仓库
+5.然后执行  git add .  指令，将项目文件添加到本地仓库暂存区
+6.再执行 git commit -m '提交代码描述信息' 指令将代码提交本地分支
+7.执行 git remote add origin git@github.com:xiongxingkai/earnwaidan01.git 
+  指令 将本地仓库与远程仓库关联 （此处的仓库地址是个例子，不同仓库使用不同的地址）
+8.执行 git push -u origin master 把当前分支master推送到远程
+
+三、先有远程仓库的开发形式
+
+1.先在github网站登录个人账户，新建一个仓库（new Repository）
+2.填写仓库名称，仓库描述可选填，
+3.我们勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件。创建完毕后，可以看到README.md文件：
+4.现在，远程库已经准备好了，下一步是用命令git clone克隆一个本地库：
+5. git clone git@github.com:xiongxingkai/earnwaidan01.git
+
+  克隆完后，执行命令
+
+  git fetch origin 
+   
+   来获取远程仓库的所有分支
+
+   git checkout -b  develop origin/develop 
+   
+   git checkout -b  feature/hr origin/feature/hr // 从当前分支拷贝出一个新分支 并切换到该新分支 并设置该分支与远程分支关联（当该新分支在远程分支存在时可设置）
+
+6.如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。
+
+你也许还注意到，GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
+
+7. git branch  // 查看本地仓库所有分支
+
+   git branch -a // 查看所有分支（包括远程仓库的所有分支）
+
+   git branch --set-upstream-to=origin/feature/hr feature/hr  // 设置本地分支与远程分支关联
+
+   git pull  // 从远程拉代码
+
+   git push   将本地代码推送到远程
+
+   cd  文件路径   // 切换到指定文件目录
+
+   git commit -am'提交描述' // 这条命令可以不用添加文件，直接将改动的文件提交到本地仓库的当前分支
+
+   git config --global core.autocrlf false
+   git config --global core.safecrlf true
+
+   git checkout master // 切换到master主分支
+   git merge dev  // 将dev分支合并到master分支
+   git branch -d dev  // 合并完dev分支后可以删除该分支
+
+   删除本地分支：git branch -d 分支名（remotes/origin/分支名）
+
+   强制删本地：git branch -D 分支名
+
+   删除远程分支：git push origin --delete 分支名（remotes/origin/分支名）
+
+
+
+
+   =======================================================================================================================
+   ====================================== vue  项目打包后在本地启动一个服务来查看dist 目录下的静态页面 =================================================================================
+   =======================================================================================================================
+1.先通过 cnpm i -g serve   全局安装serve插件,  可以通过  serve -h 查看serve 命令
+
+2.在指定目录下打开控制台 输入 serve 文件目录路径 就可以在控制台显示的路径地址下查看页面了
+例如 想查看vue项目目录下的dist文件中的index.html文件  可以在vue项目的根目录下打开控制台，输入 serve dist 命令就可以查看了
+
+
+
+
+
+   =======================================================================================================================
+   ====================================== vue  项目打中使用水行图 =================================================================================
+   =======================================================================================================================
+   ECharts 水球图是作为扩展存在的，因此不在 ECharts 项目中，
+1.先通过 cnpm install --save echarts-liquidfill   安装
+  import  echarts from 'echarts';
+  import 'echarts-liquidfill';
+
+  echarts.init(document.getElementById('div1')).setOption({
+    series: [
+      {
+        type: 'liquidFill',
+        data: [0.5, 0.4, 0.3, 0.2] // 长度可以为1 显示不规则圆弧高亮去 
+      },
+      {
+        type: 'liquidFill',
+        data: [],
+        color: ['#294D99', '#156ACF', '#1598ED', '#45BDFF'],
+        center: ['50%', '50%'],
+        radius: '50%',
+        amplitude: '8%',
+        waveLength: '80%',
+        phase: 'auto',
+        period: 'auto',
+        direction: 'right',
+        shape: 'circle',
+
+        waveAnimation: true,
+        animationEasing: 'linear',
+        animationEasingUpdate: 'linear',
+        animationDuration: 2000,
+        animationDurationUpdate: 1000,
+
+        outline: {
+            show: true,
+            borderDistance: 8,
+            itemStyle: {
+                color: 'none',
+                borderColor: '#294D99',
+                borderWidth: 8,
+                shadowBlur: 20,
+                shadowColor: 'rgba(0, 0, 0, 0.25)'
+            }
+        },
+
+        backgroundStyle: {
+            color: '#E3F7FF'
+        },
+
+        itemStyle: {
+            opacity: 0.95,
+            shadowBlur: 50,
+            shadowColor: 'rgba(0, 0, 0, 0.4)'
+        },
+
+        label: {
+            show: true,
+            color: '#294D99',
+            insideColor: '#fff',
+            fontSize: 50,
+            fontWeight: 'bold',
+            align: 'center',
+            baseline: 'middle'
+            position: 'inside'
+        },
+
+        emphasis: {
+            itemStyle: {
+                opacity: 0.8
+            }
+        }
+      },
+      {
+        type: 'liquidFill',
+        data: [0.6, {
+            value: 0.5,
+            itemStyle: {
+                color: 'red'
+            }
+        }, 0.4, 0.3]
+      },
+      {
+        type: 'liquidFill',
+        data: [0.6, 0.5, 0.4, 0.3],
+        radius: '70%',
+        phase: 0,
+        period: function (value, index) {
+            // This function is called four times, each for a data item in series.
+            // `value` is 0.6, 0.5, 0.4, 0.3, and `index` is 0, 1, 2, 3.
+            return 2000 * index + 1000;
+        }
+      }
+
+
+    ]
+  })
+
+
+
+
+
+/* ====================================================================================
+    =========================用正则表达式实现一个去除字符串首尾空字符的函数=========================================================
+    =================================================================================
+ */
+
+ function trimStr(str) {
+   // var reg = /(^\s*)|(\s*$)/g
+    var reg = /(^\s*(?=\w*))|((?<=\w*)\s*$)/g
+   return str.replace(reg, '')
+ }
+
+
+
+
+
+/* ====================================================================================
+    =========================手动实现一个防抖动函数=========================================================
+    =================================================================================
+ */
+
+ function debounce(fn, delay) {
+    let timer = null
+    return function() {
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
+      timer = setTimeout(() => {
+        fn()
+      }, delay)
+    }
+  }
+
+
+
+/* ====================================================================================
+    =========================手动实现一个节流函数=========================================================
+    =================================================================================
+ */
+
+ function throttle(fn, delay) {
+    let isDisabled = false
+    let timer = null
+    return function() {
+      if (isDisabled) {
+        return false
+      }
+      isDisabled = true
+      timer = setTimeout(() => {
+        fn()
+        clearTimeout(timer)
+        timer = null
+        isDisabled = false
+      }, delay)
+    }
+  }

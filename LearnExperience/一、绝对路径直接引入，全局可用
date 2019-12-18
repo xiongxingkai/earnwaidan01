@@ -1,0 +1,115 @@
+一、绝对路径直接引入，全局可用
+
+主入口页面 index.html 中用 script 标签引入：
+
+<script src="./static/jquery-1.12.4.js"></script>
+1
+这样，其实就已经可以在项目中使用 jQuery 了。
+
+mounted () {
+  console.log($)
+}
+由于我的项目开启了 ESLint 检测，所以也会报一个 error ：'$' is not defined 。
+
+我们可以让 ESLint 不检查这一行：
+
+mounted () {
+  /* eslint-disable */
+  console.log($)
+}
+1
+2
+3
+4
+加了 /* eslint-disable */ 以后，就不会报那个错了。
+二、绝对路径直接引入，配置后，import 引入后再使用
+
+第一种方法有一个弊端就是：我们每一个使用了 $ 的地方，都要再前面加上 /* eslint-disable */ ，这显然是不方便的。
+
+于是，我们有了第二种方法
+
+还是先在主入口页面 index.html 中用 script 标签引入：
+
+<script src="./static/jquery-1.12.4.js"></script>
+1
+然后，我们可以在 webpack 中配置一个 externals
+
+externals: {
+  'jquery': 'jQuery'
+}
+1
+2
+3
+这样，我们就可以在每一个组件中用 import 来引用这个 jquery 了。
+
+import $ from 'jquery'
+
+export default {
+  created() {
+    console.log($)
+  }
+}
+很好，没有任何问题，我们可以在这个组件中 随意的 任意的 多次的 来使用 $ 了。
+
+OK，咱们已经介绍两种方式了，它们有一个共同点：都需要在主入口页面 index.html 中，用 script 标签来引入 jQuery。
+
+如果你不想在 inde.html 中使用 script 标签来引入 jQuery 的话，我们还有方法
+
+三、webpack中配置 alias，import 引入后再使用
+
+我们不需要在主入口文件 index.html 中引入 jQuery 。我们只需要在 webpack 的配置文件中，在 resolve 中为 jQuery 添加一个 alias 。
+resolve: {
+  extensions: ['.js', '.vue', '.json'],
+  alias: {
+    '@': resolve('src'),
+    'jquery': resolve('static/jquery-1.12.4.js')
+  }
+}
+那么，我们就可以在任意组件中，通过 import 的方式来使用 jquery 了。
+<script>
+import $ from 'jquery'
+export default {
+  name: 'app',
+  created() {
+    console.log($)
+  }
+}
+</script>
+OK，也是没有任何问题的
+
+四、webpack 中配置 plugins，无需 import 全局可用
+
+在第三种的基础上，如果我们增加一个 plugins 的配置，那么，我们在使用的时候，无需 import $ from 'jquery' 也可以。
+resolve: {
+  extensions: ['.js', '.vue', '.json'],
+  alias: {
+    '@': resolve('src'),
+    'jquery': resolve('static/jquery-1.12.4.js')
+  }
+},
+plugins: [
+  new webpack.ProvidePlugin({
+    $: 'jquery'
+  })
+]
+这个时候，我们在项目中，就可以直接使用 $ 了。
+<script>
+export default {
+  name: 'app',
+  created() {
+    /* eslint-disable*/
+    console.log($)
+  }
+}
+</script>
+同理，由于我的项目使用了 ESLint ，所以需要在使用了 $ 的代码前添加 /* eslint-disable*/ 来去掉 ESLint 的检查，否则会报错：'$' is not define
+结论
+
+第一种和第四种方式使用的时候，不需要 import ，全局直接可用；第二种和第三种方式使用的时候，需要先 import 。
+
+1、现在的项目一般都会加入 ESLint 代码检查，所以推荐使用第二种或者第三种方式（这两种方式在使用的时候都需要先 import 引入，然后再使用，也就不存在 ESLint 报 not defined 的问题）
+
+2、如果你的项目没有使用 ESLint ，第一种和第四种也是不错的选择。
+
+3、如果你使用了 ESLint，仍然想使用第一种或者第四种方式，那么，我们就得在 ESLint 的配置文件中添加规则：'no-undef': 0
+

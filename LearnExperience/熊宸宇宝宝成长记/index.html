@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./img/favicon.ico">
+  <title>熊宸宇宝宝的成长记录</title>
+  <style>
+    .container {
+      min-height: 500px;
+      padding: 0 50px;
+      background: #0ff;
+      box-shadow: 0 0 5px 10px #f0f;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    h1 {
+      /* font-size: 20px; */
+      text-shadow: 0 0 5px rgb(200, 255, 0);
+    }
+
+    .content {
+      font-size: 18px;
+    }
+
+    .red {
+      color: #f00;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="app"></div>
+    <iframe src="animation.html" width="100%" height="500px" frameborder="0"></iframe>
+  </div>
+  <script src="./js/moment.js"></script>
+  <script>
+    var start = new Date('2019-06-16 12:09')
+    var contentBox = document.getElementById('app')
+    var timer = setInterval(function() {
+      var now = new Date()
+      var diff = now - start
+      var year = Math.floor(diff / (365 * 24 * 3600 * 1000)) // 年
+      var month = Math.floor((diff - year * 365 * 24 * 3600 * 1000) / (30 * 24 * 3600 * 1000)) // 月
+      var day = Math.floor((diff - year * 365 * 24 * 3600 * 1000 - month * 30 * 24 * 3600 * 1000) / (24 * 3600 *
+        1000)) // 日
+      var hour = Math.floor((diff - year * 365 * 24 * 3600 * 1000 - month * 30 * 24 * 3600 * 1000 - day * 24 *
+        3600 * 1000) / (3600 * 1000)) // 时
+      var minute = Math.floor((diff - year * 365 * 24 * 3600 * 1000 - month * 30 * 24 * 3600 * 1000 - day * 24 *
+        3600 * 1000 - hour * 3600 * 1000) / (60 * 1000)) //分
+      var second = Math.floor((diff - year * 365 * 24 * 3600 * 1000 - month * 30 * 24 * 3600 * 1000 - day * 24 *
+        3600 * 1000 - hour * 3600 * 1000 - minute * 60 * 1000) / 1000) //秒
+      var totalDay = Math.floor(diff / (24 * 3600 * 1000)) // 多少天大了
+      var html = `
+                  <h1 class="text-center">宸宝宝成长记</h1>
+                  <p class="content">hello，大家好，我叫熊宸宇，我今天<span class="red"> ${totalDay} </span> 天大了，好开心呀!!! </p>
+                  <p class="content">
+                    今天我
+                    <span class="red"> ${year} </span> 岁
+                    <span class="red"> ${month} </span> 个月
+                    <span class="red"> ${day} </span> 天
+                    <span class="red"> ${hour} </span> 小时
+                    <span class="red"> ${minute} </span> 分钟
+                    <span class="red"> ${second} </span> 秒
+                    大了
+                  </p>
+                `
+      contentBox.innerHTML = html
+    }, 100)
+  </script>
+</body>
+
+</html>

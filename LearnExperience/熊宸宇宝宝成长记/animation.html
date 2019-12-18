@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    @keyframes move {
+      0% {
+        transform: translate(400px, 0);
+      }
+
+      100% {
+        transform: translate(800px, 0);
+      }
+    }
+
+    @keyframes progress {
+      100% {
+        /* background-size: 1000px; */
+        width: 1000px;
+      }
+    }
+
+    .ball {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #0ff;
+      animation: move 3s linear 0s infinite alternate both;
+    }
+
+    .ball:hover {
+      animation-play-state: paused;
+    }
+
+    .progressBar {
+      width: 1000px;
+      height: 30px;
+      line-height: 30px;
+      /* border: 1px solid #f0f; */
+      background-color: #5cb85c;
+      /* background: repeating-linear-gradient(45deg, #0f0 0px,#f00 20px,#ff0 40px,#00f 60px); */
+      /* background-image: linear-gradient(45deg, #0f0,#0ff,#00f,#ff0); */
+      background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, .15) 2%, transparent 2%, transparent 4%, rgba(255, 255, 255, .15) 4%, rgba(255, 255, 255, .15) 6%, transparent 6%, transparent 8%);
+      /* background-size: 0;  */
+      width: 0;
+      animation: progress 5s linear 0s 1 normal both;
+    }
+
+    .progressBar:hover {
+      animation-play-state: paused;
+    }
+
+    .rainbow {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 5px inset red,
+        0 0 0 10px inset orange,
+        0 0 0 15px inset yellow,
+        0 0 0 20px inset lime,
+        0 0 0 25px inset #0ff,
+        0 0 0 30px inset blue,
+        0 0 0 35px inset magenta;
+      clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%);
+    }
+
+    .lineargradient {
+      width: 200px;
+      height: 200px;
+      background:
+        linear-gradient(180deg, #03A9F4, #03A9F4),
+        linear-gradient(90deg, #ffffff 1px, transparent 0, transparent 19px),
+        linear-gradient(180deg, #ffffff 1px, transparent 0, transparent 19px),
+        linear-gradient(180deg, transparent, #2196f387);
+      background-size: 100% 1.5%, 10% 100%, 100% 10%, 100% 100%;
+      background-repeat: no-repeat, repeat, repeat, no-repeat;
+      background-position: 0 0, 0 0, 0 0, 0 0;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 1.5%, 0% 1.5%);
+      animation: scanmove 2s infinite linear;
+    }
+
+    @keyframes scanmove {
+      to {
+        background-position: 0 100%, 0 0, 0 0, 0 0;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      }
+    }
+
+    .earthContainer {
+      width: 150px;
+      height: 100px;
+      border: 1px solid #0ff;
+      border-radius: 50%;
+      position: relative;
+      margin: 20px;
+    }
+
+    .earth {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      animation: moveEarth 3s linear infinite;
+    }
+
+    @keyframes moveEarth {
+
+      0%,
+      100% {
+        transform: translate(25px, 0);
+      }
+
+      25%,
+      75% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(-25px, 0);
+      }
+    }
+
+    .rotateEarth {
+      margin: 0;
+      width: 20px;
+      height: 20px;
+      margin: -50%;
+      border-radius: 50%;
+      background: #0ff;
+      animation: rotateEarth 3s linear infinite;
+    }
+
+    @keyframes rotateEarth {
+      0% {
+        transform: rotate(0deg) translate(50px, 0);
+      }
+
+      100% {
+        transform: rotate(360deg) translate(50px, 0);
+      }
+    }
+
+    .loadingCD {
+      background: pink;
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .loadingCD:after {
+      content: 'Loading...';
+      display: block;
+      text-align: center;
+      font-size: 30px;
+      line-height: 200px;
+      color: white;
+      filter: drop-shadow(2px 4px 6px black);
+    }
+
+    .loadingCD div {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background: green;
+      animation: moveCD 2s infinite linear;
+      border-radius: 50%;
+      filter: blur(36px);
+    }
+
+    .loadingCD div:nth-child(1) {
+      animation-delay: 0s;
+      background: red;
+    }
+
+    .loadingCD div:nth-child(2) {
+      animation-delay: -0.5s;
+      background: green;
+    }
+
+    .loadingCD div:nth-child(3) {
+      animation-delay: -1s;
+      background: yellow;
+    }
+
+    .loadingCD div:nth-child(4) {
+      animation-delay: -1.5s;
+      background: blue;
+    }
+
+    @keyframes moveCD {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      25% {
+        transform: translate(100%, 0);
+      }
+
+      50% {
+        transform: translate(100%, 100%);
+      }
+
+      75% {
+        transform: translate(0, 100%);
+      }
+    }
+
+    .snake-border {
+      width: 190px;
+      height: 190px;
+      background: #0ff;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .snake-border:before,
+    .snake-border:after {
+      position: absolute;
+      content: "";
+      left: -5px;
+      right: -5px;
+      top: -5px;
+      bottom: -5px;
+      border: 5px solid #FF77FF;
+    }
+
+    .snake-border:before {
+      animation: moveSnakeBorder 5s linear infinite;
+    }
+
+    .snake-border:after {
+      border-color: #FF7777;
+      animation: moveSnakeBorder 3s linear -2.5s infinite alternate;
+    }
+
+    @keyframes moveSnakeBorder {
+
+      0%,
+      100% {
+        clip: rect(0, 200px, 5px, 0);
+      }
+
+      25% {
+        clip: rect(0, 200px, 200px, 195px);
+      }
+
+      50% {
+        border-color: #00FE00;
+        clip: rect(195px, 200px, 200px, 0);
+      }
+
+      75% {
+        clip: rect(0, 5px, 200px, 0px);
+      }
+    }
+
+    .eatMoonContainer {
+      background: aqua;
+      /* height: 200px; */
+      margin: 25px;
+      padding: 35px;
+    }
+
+    .moon1 {
+      margin: 50px;
+      font-size: 20px;
+      display: inline-block;
+      width: 5em;
+      height: 5em;
+      vertical-align: middle;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: 5em 0 0 #F5F508;
+      animation: eatMoon1 10s linear infinite alternate-reverse;
+    }
+
+    @keyframes eatMoon1 {
+      to {
+        box-shadow: -5em 0 0 #F5F508;
+        transform: translate(10em, 0);
+      }
+    }
+
+    .moon2 {
+      margin: 50px;
+      font-size: 20px;
+      width: 5em;
+      height: 5em;
+      color: lightyellow;
+      border-radius: 50%;
+      /* background: red; */
+      box-shadow: inset 5em 0 0;
+      animation: eatMoon2 10s linear infinite alternate;
+    }
+
+    @keyframes eatMoon2 {
+      to {
+        box-shadow: inset -5em 0 0;
+      }
+    }
+
+    .bgBlack {
+      min-height: 500px;
+      padding: 20px 50px;
+      background: black;
+    }
+
+    .marginBottom {
+      margin-bottom: 50px;
+    }
+
+    .plantContainer1 {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .starRing1 {
+      width: 200px;
+      height: 200px;
+      background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+      border-radius: 50%;
+      position: absolute;
+      transform: rotateX(100deg) rotateY(15deg);
+      animation: starMove1 3s linear infinite;
+    }
+
+    @keyframes starMove1 {
+      to {
+        transform: rotateX(100deg) rotateY(15deg) rotateZ(360deg);
+      }
+    }
+
+    .starRing1:before {
+      content: "";
+      width: 150px;
+      height: 150px;
+      background: #000000;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      border-radius: 50%;
+    }
+
+    .starBall1 {
+      background: rgba(255, 255, 255, 0.1);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      transform: translate(50px, 50px);
+      box-shadow: 0 0 15px 3px #f0f inset;
+      position: absolute;
+    }
+
+    .plantContainer2 {
+      margin: 100px;
+      position: relative;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      perspective-origin: 1000px 0px;
+    }
+
+    .starRing2 {
+      width: 220px;
+      height: 220px;
+      background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+      border-radius: 50%;
+      position: absolute;
+      transform: rotateX(50deg);
+      animation: starMove2 3s linear infinite;
+      mask: radial-gradient(transparent 75px, #000 0);
+      -webkit-mask: radial-gradient(transparent 75px, #000 0);
+    }
+
+    @keyframes starMove2 {
+      to {
+        transform: rotateX(50deg) rotateZ(360deg);
+      }
+    }
+
+    .starBall2 {
+      background: #000;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      transform: translate(35px, 35px);
+      box-shadow: 0 0 15px 3px magenta inset;
+      position: absolute;
+    }
+
+    .googleLogoContainer {
+      background: #808080;
+    }
+
+    .googleLogo {
+      width: 300px;
+      height: 300px;
+      background:
+        radial-gradient(#419af6 26%, white 0, white 30%, transparent 0),
+        linear-gradient(120deg, #5dd52f 50%, transparent 0) 0 100% / 115% 44%,
+        linear-gradient(60deg, #5dd533 50%, transparent 0) 0 0/ 35% 70%,
+        linear-gradient(120deg, #ff0000 50%, transparent 0) 0 0 / 50% 197%,
+        linear-gradient(red, red) 0 0 / 100% 29%,
+        linear-gradient(#fdeb35, #fce72a);
+      background-repeat: no-repeat;
+      border-radius: 100%;
+      border: 8px solid white;
+    }
+
+    .cardContainer {
+      height: 350px;
+    }
+
+    .card1,
+    .card2 {
+      width: 200px;
+      height: 300px;
+      position: absolute;
+      animation: moveCard 5s infinite ease-in-out;
+    }
+
+    .card1 {
+      background: purple;
+    }
+
+    .card2 {
+      background: aqua;
+      animation-delay: 2.5s;
+    }
+
+    @keyframes moveCard {
+      0% {
+        z-index: 1;
+      }
+
+      12.5% {
+        transform: translateX(250px);
+      }
+
+      25% {
+        z-index: -1;
+        transform: translateX(0px);
+      }
+
+      100% {
+        z-index: 0;
+        transform: translateX(0px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 球型滚动 -->
+  <div class="ball"></div>
+  <!-- 进度条 -->
+  <div class="progressBar"></div>
+  <!-- 彩虹 -->
+  <div class="rainbow"></div>
+  <!-- 人脸识别扫描图 -->
+  <div class="lineargradient"></div>
+  <!-- 模拟星球环绕 -->
+  <div class="earthContainer">
+    <div class="earth">
+      <p class="rotateEarth"></p>
+    </div>
+  </div>
+  <!-- CD唱片效果图 -->
+  <div class="loadingCD">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <!-- 蛇形边框效果图 -->
+  <div class="snake-border">content</div>
+  <!-- 天狗吃月效果 -->
+  <div class="eatMoonContainer">
+    <div class="moon1"></div>
+    <div class="moon2"></div>
+  </div>
+  <!-- 画一个土星 -->
+  <div class="bgBlack">
+    <!-- 方法一 -->
+    <div class="plantContainer1 marginBottom">
+      <div class="starRing1"></div>
+      <div class="starBall1"></div>
+    </div>
+    <!-- 方法二 -->
+    <div class="plantContainer2 marginBottom">
+      <div class="starRing2"></div>
+      <div class="starBall2"></div>
+    </div>
+    <!-- 原项目地址：https://codepen.io/jerrywang1996/pen/GRKmGwG -->
+  </div>
+  <!-- 用css实现谷歌图标 -->
+  <div class="googleLogoContainer marginBottom">
+    <div class="googleLogo"></div>
+  </div>
+  <!-- 切牌特效图实现原理 -->
+  <div class="cardContainer marginBottom">
+    <div class="card1"></div>
+    <div class="card2"></div>
+  </div>
+</body>
+</html>

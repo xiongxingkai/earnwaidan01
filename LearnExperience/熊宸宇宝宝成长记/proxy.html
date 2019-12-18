@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>通过proxy实现深度监听</title>
+</head>
+
+<body>
+  <script>
+    var person = {
+      name: 'xxk',
+      age: 30,
+      skill: {
+        html: 98,
+        javascript: 98,
+        css: 98,
+        vue: 98,
+        react: 80,
+        'wx-miniPro': 90
+      },
+      workPlace: ['深圳', '上海']
+    }
+
+    function watchDeep(target, prevKey, handleObj) {
+      prevKey = prevKey ? prevKey + '.' : ''
+      Object.keys(target).forEach(key => {
+        if (typeof target[key] === 'object' && target[key] !== null) {
+          target[key] = watchDeep(target[key], prevKey + key, handleObj)
+        }
+      })
+      return new Proxy(target, {
+        set(target, key, value, receiver) {
+          if (handleObj[prevKey + key]) {
+            handleObj[prevKey + key](value, target[key])
+          }
+          return Reflect.set(target, key, value, receiver)
+        }
+      })
+    }
+    person = watchDeep(person, '', {
+      name(nVal, oVal) {
+        console.log('姓名改变了', nVal, oVal)
+      },
+      age(nVal, oVal) {
+        console.log('年龄改变了', nVal, oVal)
+      },
+      skill(nVal, oVal) {
+        console.log('技能包改变了', nVal, oVal)
+      },
+      'skill.html'(nVal, oVal) {
+        console.log('html技能改变了', nVal, oVal)
+      },
+      'skill.javascript'(nVal, oVal) {
+        console.log('javascript技能改变了', nVal, oVal)
+      },
+      'skill.css'(nVal, oVal) {
+        console.log('css技能改变了', nVal, oVal)
+      },
+      'skill.vue'(nVal, oVal) {
+        console.log('vue技能改变了', nVal, oVal)
+      },
+      'skill.react'(nVal, oVal) {
+        console.log('react技能改变了', nVal, oVal)
+      },
+      'skill.wx-miniPro'(nVal, oVal) {
+        console.log('wx-miniPro技能改变了', nVal, oVal)
+      },
+      workPlace(nVal, oVal) {
+        console.log('城市改变了', nVal, oVal)
+      },
+      'workPlace.0'(nVal, oVal) {
+        console.log('城市[0]改变了', nVal, oVal)
+      }
+
+    })
+
+  </script>
+</body>
+
+</html>

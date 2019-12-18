@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+ 
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>html导出生成word文档</title>
+    <style>
+    /* .word{
+        background: #ff0;
+    } */
+    .contentArea{
+        background-image: url('u5256.png')
+    }
+    </style>
+</head>
+ 
+<body>
+    <div class="word" style="background-color:#ff0;display: none;">
+        <h1>我们的梦想来自内心深处的孤独</h1>>
+        <p style="font-size:20pt;font-weight:bold;text-align: center;">JS导出Word文档</p>
+        <div>我们来自同一个世界</div>
+        <h1>合同号核桃仁和Athena</h1>
+        <p class="contentArea">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+           Officiis ut atque voluptatibus recusandae a aliquid natus neque laboriosam. 
+           Dolore, illum a adipisci placeat suscipit nulla earum aliquid excepturi ea
+            cupiditate.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+            Perferendis cum nihil placeat impedit a, eligendi porro iusto vel sint, 
+            amet, debitis nemo delectus id odio neque eum dolore maiores atque.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+            Aliquid maxime necessitatibus laborum non, blanditiis ratione totam 
+            dignissimos! Voluptatibus est non similique culpa distinctio atque, 
+            ipsam nostrum placeat nihil odit ipsum!
+        </p>
+        <h1>合同号核桃仁和Athena</h1>
+        <h2>上面的为快速填充文字</h2>
+        <!-- <img src="u5256.png" alt="555"> -->
+        <h1>合同号核桃仁和Athena</h1>
+    </div>
+    <input type="button" value="导出word">
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+    <script type="text/javascript" src="FileSaver.js"></script>
+    <script type="text/javascript" src="jquery.wordexport.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function (event) {
+                $(".word").wordExport('word文档');
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3d动感立体相册</title>
+  <style>
+    .protect_1000 {
+      perspective: 1000px;
+    }
+    .container{
+      width: 800px;
+      height: 600px;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .pic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="protect_1000">
+    <div class="container">
+      <div class="pic rotate_0">
+        <img src="./img/1.jpg" alt="">
+      </div>
+      <div class="pic rotate_90">
+        <img src="./img/2.jpg" alt="">
+      </div>
+      <div class="pic rotate_180">
+        <img src="./img/3.jpg" alt="">
+      </div>
+      <div class="pic rotate_270">
+        <img src="./img/2.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
