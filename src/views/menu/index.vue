@@ -27,6 +27,10 @@ export default {
           title: '用户画像分析',
           url: '/picture-board'
         },
+        {
+          title: '拖拽表格排序',
+          url: '/drag-table'
+        },
       ]
     }
   }
