@@ -5,7 +5,7 @@
       <el-table-column label="序号" prop="id"></el-table-column>
       <el-table-column label="数值" prop="number"></el-table-column>
     </el-table> -->
-    <table>
+    <table class="sortTable">
       <thead>
         <tr>
           <th>序号</th>
@@ -92,7 +92,8 @@ export default {
       }
     },
     onDragEnd() {
-      if (this.endIndex) {
+      console.log('拖拽结束', this.startIndex, this.endIndex)
+      if (this.endIndex !== undefined) {
         const arr = this.tableData.splice(this.startIndex, 1)
         this.tableData.splice(this.endIndex, 0, arr[0])
       }
@@ -100,3 +101,20 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+#dragTable{
+  .sortTable {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    border-collapse: collapse;
+    th,td {
+      border: 1px solid #12AB15;
+      padding: 8px;
+      cursor: move;
+      color: #f0f;
+      text-shadow: 0 0 5px 5px #0ff;
+    }
+  }
+}
+</style>
