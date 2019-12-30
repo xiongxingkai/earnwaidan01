@@ -31,6 +31,10 @@ export default {
           title: '拖拽表格排序',
           url: '/drag-table'
         },
+        {
+          title: '树形表格展示',
+          url: '/tree-table'
+        },
       ]
     }
   }

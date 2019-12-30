@@ -31,5 +31,10 @@ export default new Router({
       name: 'dragtable',
       component: () => import('@/views/dragTable')
     },
+    {
+      path: '/tree-table',
+      name: 'treetable',
+      component: () => import('@/views/treeTable')
+    },
   ]
 })
