@@ -289,4 +289,48 @@ class Vue {
     const aa = arr.map(item => Array.isArray(item) ? flatArr(item) : item)
     return [].concat(...aa)
  }
+
+
+
+
+
+
+
+
+
+
+/**
+ * ===========================================================================================================================
+ * ============================================异步函数 async ==================================================================
+ * ===========================================================================================================================
+ */
+
+function timeout_1(ms) {   
+  return new Promise((resolve) => {  // 这里如果没有return的话 就是一个同步函数
+    setTimeout(resolve, ms);
+  });
+}
+
+async function asyncPrint(value, ms) {
+  await timeout_1(ms);
+  console.log(value);
+}
+
+asyncPrint('hello world', 50);
+// 上面代码指定 50 毫秒以后，输出hello world。
+
+// 由于async函数返回的是 Promise 对象，可以作为await命令的参数。所以，上面的例子也可以写成下面的形式。
+
+async function timeout(ms) {
+  await new Promise((resolve) => {  // 这里标明了async为异步函数，所以为异步函数 
+    setTimeout(resolve, ms);
+  });
+}
+
+async function asyncPrint(value, ms) {
+  await timeout(ms);
+  console.log(value);
+}
+
+asyncPrint('hello world', 50);
  
