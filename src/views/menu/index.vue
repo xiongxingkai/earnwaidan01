@@ -35,6 +35,14 @@ export default {
           title: '树形表格展示',
           url: '/tree-table'
         },
+        {
+          title: '热力图展示',
+          url: '/heat-map-copy'
+        },
+        {
+          title: '热力图展示2',
+          url: '/heat-map'
+        },
       ]
     }
   }

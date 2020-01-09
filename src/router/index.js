@@ -36,5 +36,15 @@ export default new Router({
       name: 'treetable',
       component: () => import('@/views/treeTable')
     },
+    {
+      path: '/heat-map',
+      name: 'heatmap',
+      component: () => import('@/views/heatMap')
+    },
+    {
+      path: '/heat-map-copy',
+      name: 'heatmapcopy',
+      component: () => import('@/views/heatMapCopy')
+    },
   ]
 })
