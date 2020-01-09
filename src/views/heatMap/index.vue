@@ -4,136 +4,138 @@
   </div>
 </template>
 <script>
-import echarts from 'echarts'
+import echarts from "echarts";
 export default {
-  name: 'heatMap',
+  name: "heatMap",
   data() {
     return {
       echartData: []
-    }
+    };
   },
   created() {
-    this.initData()
+    this.initData();
   },
   mounted() {
-    this.$nextTick(this.initMap)
+    this.$nextTick(this.initMap);
   },
   methods: {
     initData() {
       this.echartData = [
-        [0, 0, 1],
-        [0, 1, 4],
-        [0, 2, 1],
-        [0, 3, 1],
-        [0, 4, 1],
-        [0, 5, 4],
-        [0, 6, 1],
+        [0, 0, 158],
+        [0, 1, 62],
+        [0, 2, 753],
+        [0, 3, 268],
+        [0, 4, 357],
+        [0, 5, 653],
+        [0, 6, 186],
 
-        [1, 0, 1],
-        [1, 1, 1],
-        [1, 2, 4],
-        [1, 3, 1],
-        [1, 4, 3],
-        [1, 5, 5],
-        [1, 6, 1],
-       
-        [2, 0, 1],
-        [2, 1, 1],
-        [2, 2, 1],
-        [2, 3, 2],
-        [2, 4, 3],
-        [2, 5, 2],
-        [2, 6, 1],
-        
-        [3, 0, 3],
-        [3, 1, 4],
-        [3, 2, 4],
-        [3, 3, 5],
-        [3, 4, 3],
-        [3, 5, 3],
-        [3, 6, 1],
-        
-        [4, 0, 5],
-        [4, 1, 1],
-        [4, 2, 1],
-        [4, 3, 3],
-        [4, 4, 1],
-        [4, 5, 4],
-        [4, 6, 1],
-        
+        [1, 0, 281],
+        [1, 1, 116],
+        [1, 2, 314],
+        [1, 3, 189],
+        [1, 4, 398],
+        [1, 5, 586],
+        [1, 6, 551],
+
+        [2, 0, 182],
+        [2, 1, 361],
+        [2, 2, 821],
+        [2, 3, 622],
+        [2, 4, 393],
+        [2, 5, 512],
+        [2, 6, 2691],
+
+        [3, 0, 378],
+        [3, 1, 466],
+        [3, 2, 583],
+        [3, 3, 765],
+        [3, 4, 689],
+        [3, 5, 963],
+        [3, 6, 152],
+
+        [4, 0, 57],
+        [4, 1, 169],
+        [4, 2, 721],
+        [4, 3, 623],
+        [4, 4, 389],
+        [4, 5, 538],
+        [4, 6, 10],
+
         [5, 0, 2],
         [5, 1, 2],
-        [5, 2, 5],
+        [5, 2, 569],
         [5, 3, 1],
-        [5, 4, 2],
-        [5, 5, 5],
-        [5, 6, 1],
-        
+        [5, 4, 269],
+        [5, 5, 591],
+        [5, 6, 661],
+
         [6, 0, 1],
-        [6, 1, 1],
-        [6, 2, 2],
-        [6, 3, 2],
-        [6, 4, 4],
-        [6, 5, 3],
-        [6, 6, 1],
+        [6, 1, 731],
+        [6, 2, 392],
+        [6, 3, 262],
+        [6, 4, 385],
+        [6, 5, 373],
+        [6, 6, 261],
 
-        [7, 0, 3],
-        [7, 1, 3],
-        [7, 2, 2],
-        [7, 3, 2],
-        [7, 4, 4],
-        [7, 5, 4],
-        [7, 6, 1],
+        [7, 0, 623],
+        [7, 1, 783],
+        [7, 2, 822],
+        [7, 3, 612],
+        [7, 4, 398],
+        [7, 5, 529],
+        [7, 6, 678],
 
-        [8, 0, 1],
-        [8, 1, 1],
-        [8, 2, 3],
-        [8, 3, 1],
-        [8, 4, 4],
-        [8, 5, 2],
-        [8, 6, 1]
-      ]
+        [8, 0, 126],
+        [8, 1, 195],
+        [8, 2, 351],
+        [8, 3, 167],
+        [8, 4, 369],
+        [8, 5, 272],
+        [8, 6, 168]
+      ];
     },
     initMap() {
       const xLabelArray = [
-        '0:00~8:00',
-        '8:00~10:00',
-        '10:00~12:00',
-        '12:00~14:00',
-        '14:00~16:00',
-        '16:00~18:00',
-        '18:00~20:00',
-        '20:00~22:00',
-        '22:00~24:00'
-      ]
+        "0:00~8:00",
+        "8:00~10:00",
+        "10:00~12:00",
+        "12:00~14:00",
+        "14:00~16:00",
+        "16:00~18:00",
+        "18:00~20:00",
+        "20:00~22:00",
+        "22:00~24:00"
+      ];
       const yLabelArray = [
-        '2019/11/12',
-        '2019/11/13',
-        '2019/11/14',
-        '2019/11/15',
-        '2019/11/16',
-        '2019/11/17',
-        '2019/11/18'
-      ]
-      const that = this
-      echarts.init(document.getElementById('div1')).setOption({
+        "2019/11/12",
+        "2019/11/13",
+        "2019/11/14",
+        "2019/11/15",
+        "2019/11/16",
+        "2019/11/17",
+        "2019/11/18"
+      ];
+      const that = this;
+      const max = 992;
+      const average = parseInt(max / 5);
+      echarts.init(document.getElementById("div1")).setOption({
         tooltip: {
-          position: 'top'
+          position: "top"
         },
         animation: false,
         grid: {
-          height: '50%',
-          top: '10%'
+          height: "50%",
+          top: "10%"
         },
         xAxis: {
-          type: 'category',
+          type: "category",
           data: xLabelArray,
           axisTick: {
             show: false
           },
           axisLabel: {
             fontSize: 12,
-            color: '#6F7379',
+            color: "#6F7379",
             margin: 8
           },
           splitArea: {
@@ -141,14 +143,14 @@ export default {
           }
         },
         yAxis: {
-          type: 'category',
+          type: "category",
           data: yLabelArray,
           axisTick: {
             show: false
           },
           axisLabel: {
             fontSize: 12,
-            color: '#6F7379',
+            color: "#6F7379",
             margin: 8
           },
           splitArea: {
@@ -156,49 +158,50 @@ export default {
           }
         },
         visualMap: {
-          type: 'piecewise',
+          type: "piecewise",
           pieces: [
-            {value: 1, color: '#C3FFCD'},
-            {value: 2, color: '#FFF276'},
-            {value: 3, color: '#FFCE8A'},
-            {value: 4, color: '#FFA8A2'},
-            {value: 5, color: '#EDA5F7'}
+            { min: 0, max: average * 1, color: "#C3FFCD" },
+            { min: average * 1, max: average * 2, color: "#FFF276" },
+            { min: average * 2, max: average * 3, color: "#FFCE8A" },
+            { min: average * 3, max: average * 4, color: "#FFA8A2" },
+            // {value: 5, color: '#EDA5F7'},
+            { min: average * 4, color: "#EDA5F7" }
           ],
           itemWidth: 16,
           itemHeight: 16, // 设置拖动色块的高度
           itemGap: 16,
           show: true, // 控制不显示热力图颜色控制器
           calculable: true,
-          orient: 'horizontal',
-          text: ['高', '低'],
+          orient: "horizontal",
+          text: ["高", "低"],
           left: 180,
-          top: 'top'
+          top: "top"
         },
         series: [
           {
-            name: '回访活跃度分析',
-            type: 'heatmap',
+            name: "回访活跃度分析",
+            type: "heatmap",
             data: this.echartData,
             label: {
               show: true,
-              color: '#6F7379'
+              color: "#6F7379"
             },
             itemStyle: {
-              borderColor: '#fff',
+              borderColor: "#fff",
               borderWidth: 2
             },
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                shadowColor: "rgba(0, 0, 0, 0.5)"
               }
             }
           }
         ]
-      })
+      });
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 #heatMap {
