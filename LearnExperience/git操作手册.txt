@@ -154,8 +154,8 @@ git config --global user.email "email@example.com"
         type: 'liquidFill',
         data: [],
         color: ['#294D99', '#156ACF', '#1598ED', '#45BDFF'],
-        center: ['50%', '50%'],
-        radius: '50%',
+        center: ['50%', '50%'],  // 设置水流图圆心坐标     以容器宽高为计算基准
+        radius: '50%', // 设置水流图直径大小
         amplitude: '8%',
         waveLength: '80%',
         phase: 'auto',
@@ -164,14 +164,14 @@ git config --global user.email "email@example.com"
         shape: 'circle',
 
         waveAnimation: true,
-        animationEasing: 'linear',
+        animationEasing: 'linear',     // 设置水流图动画效果
         animationEasingUpdate: 'linear',
         animationDuration: 2000,
         animationDurationUpdate: 1000,
 
-        outline: {
+        outline: {  // 设置圆形图的轮廓
             show: true,
-            borderDistance: 8,
+            borderDistance: 8, // 轮廓边框距离内部圆圈的距离
             itemStyle: {
                 color: 'none',
                 borderColor: '#294D99',
@@ -181,20 +181,20 @@ git config --global user.email "email@example.com"
             }
         },
 
-        backgroundStyle: {
+        backgroundStyle: {  // 设置圆形图背景色
             color: '#E3F7FF'
         },
 
-        itemStyle: {
-            opacity: 0.95,
-            shadowBlur: 50,
-            shadowColor: 'rgba(0, 0, 0, 0.4)'
+        itemStyle: {            // 设置水球图系列样式
+            opacity: 0.95,  // 透明度
+            shadowBlur: 50, // 边框模糊距离
+            shadowColor: 'rgba(0, 0, 0, 0.4)' // 边框阴影颜色
         },
 
-        label: {
+        label: { // 设置文字样式
             show: true,
             color: '#294D99',
-            insideColor: '#fff',
+            insideColor: '#fff', // 被水流覆盖时的标签文字颜色
             fontSize: 50,
             fontWeight: 'bold',
             align: 'center',
@@ -202,7 +202,7 @@ git config --global user.email "email@example.com"
             position: 'inside'
         },
 
-        emphasis: {
+        emphasis: { // 高亮时的样式
             itemStyle: {
                 opacity: 0.8
             }
