@@ -22,7 +22,7 @@ export default {
     initData() {
       this.echartData = [
         [0, 0, 158],
-        [0, 1, 62],
+        [0, 1, 862],
         [0, 2, 753],
         [0, 3, 268],
         [0, 4, 357],
@@ -30,7 +30,7 @@ export default {
         [0, 6, 186],
 
         [1, 0, 281],
-        [1, 1, 116],
+        [1, 1, 816],
         [1, 2, 314],
         [1, 3, 189],
         [1, 4, 398],
@@ -43,7 +43,7 @@ export default {
         [2, 3, 622],
         [2, 4, 393],
         [2, 5, 512],
-        [2, 6, 2691],
+        [2, 6, 269],
 
         [3, 0, 378],
         [3, 1, 466],
@@ -64,7 +64,7 @@ export default {
         [5, 0, 2],
         [5, 1, 2],
         [5, 2, 569],
-        [5, 3, 1],
+        [5, 3, 881],
         [5, 4, 269],
         [5, 5, 591],
         [5, 6, 661],
@@ -88,7 +88,7 @@ export default {
         [8, 0, 126],
         [8, 1, 195],
         [8, 2, 351],
-        [8, 3, 167],
+        [8, 3, 867],
         [8, 4, 369],
         [8, 5, 272],
         [8, 6, 168]
@@ -122,10 +122,12 @@ export default {
         tooltip: {
           position: "top"
         },
-        animation: false,
+        animation: true,
         grid: {
-          height: "50%",
-          top: "10%"
+          top: 30,
+          bottom: 30,
+          left: 100,
+          right: 50
         },
         xAxis: {
           type: "category",
@@ -134,7 +136,7 @@ export default {
             show: false
           },
           axisLabel: {
-            fontSize: 12,
+            fontSize: 8,
             color: "#6F7379",
             margin: 8
           },
@@ -149,7 +151,7 @@ export default {
             show: false
           },
           axisLabel: {
-            fontSize: 12,
+            fontSize: 8,
             color: "#6F7379",
             margin: 8
           },
