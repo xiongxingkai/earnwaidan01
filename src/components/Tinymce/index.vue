@@ -173,6 +173,9 @@ export default {
         window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`)
       })
     }
+  },
+  destroyed() {
+    this.destroyTinymce()
   }
 }
 </script>
