@@ -57,11 +57,11 @@ const num = FillZero(169, 5);
 
 
 // 9.转数值      只对null、""、false、数值字符串有效
-const num1 = +null;
-const num2 = +"";
-const num3 = +false;
-const num4 = +"169";
-// num1 num2 num3 num4 => 0 0 0 169
+const num11 = +null;
+const num22 = +"";
+const num33 = +false;
+const num55 = +"169";
+// num11 num22 num33 num55 => 0 0 0 169
 
 
 // 10.时间戳
@@ -71,14 +71,14 @@ const timestamp = +newDate("2019-02-14");
 
 // 11.精确小数
 const RoundNum = (num, decimal) =>Math.round(num * 10 ** decimal) / 10 ** decimal;
-const num = RoundNum(1.69, 1);
+const num_01 = RoundNum(1.69, 1);
 // num => 1.7
 
 
 
 // 12.判断奇偶
 const OddEven = num => !!(num & 1) ? "odd" : "even";
-const num = OddEven(2);
+const num_02 = OddEven(2);
 // num => "even"
 
 
@@ -94,7 +94,7 @@ const max = Math.max(...arr);
 
 // 14.生成范围随机数
 const RandomNum = (min, max) =>Math.floor(Math.random() * (max - min + 1)) + min;
-const num = RandomNum(1, 10);
+const num_03 = RandomNum(1, 10);
 
 
 // 15.短路运算符
@@ -124,15 +124,15 @@ DataType({}, "array"); // false
 
 
 // 17.是否为空数组
-const arr = [];
-const flag = Array.isArray(arr) && !arr.length;
+const arr_01 = [];
+const flag = Array.isArray(arr_01) && !arr_01.length;
 // flag => true
 
 
 
 // 18.是否为空对象
 const obj = {};
-const flag = DataType(obj, "object") && !Object.keys(obj).length;
+const flag_01 = DataType(obj, "object") && !Object.keys(obj).length;
 // flag => true
 
 
@@ -150,19 +150,19 @@ flagA && !flagB && Func(); // 满足A且不满足B时执行
 
 
 // 20.为非假值时执行
-const flag = false; // undefined、null、""、0、false、NaN
+const flag_02 = false; // undefined、null、""、0、false、NaN
 !flag && Func();
 
 
 
 // 21.数组不为空时执行
-const arr = [0, 1, 2];
-arr.length && Func();
+const arr_02 = [0, 1, 2];
+arr_02.length && Func();
 
 
 // 22.对象不为空时执行
-const obj = { a: 0, b: 1, c: 2 };
-Object.keys(obj).length && Func();
+const obj_01 = { a: 0, b: 1, c: 2 };
+Object.keys(obj_01).length && Func();
 
 
 
@@ -181,7 +181,7 @@ if (flag) {
 // 24.switch/case使用区间
 const age = 26;
 switch (true) {
-    caseisNaN(age):
+    case isNaN(age):
         console.log("not a number");
         break;
     case (age < 18):
@@ -200,7 +200,7 @@ switch (true) {
 
 // 25.克隆数组
 const _arr = [0, 1, 2];
-const arr = [..._arr];
+const arr_03 = [..._arr];
 // arr => [0, 1, 2]
 
 
@@ -208,49 +208,49 @@ const arr = [..._arr];
 // 26.合并数组
 const arr1 = [0, 1, 2];
 const arr2 = [3, 4, 5];
-const arr = [...arr1, ...arr2];
+const arr_04 = [...arr1, ...arr2];
 // arr => [0, 1, 2, 3, 4, 5];
 
 
 // 27.去重数组
-const arr = [...new Set([0, 1, 1, null, null])];
+const arr_05 = [...new Set([0, 1, 1, null, null])];
 // arr => [0, 1, null]
 
 
 
 // 28.混淆数组
-const arr = [0, 1, 2, 3, 4, 5].slice().sort(() =>Math.random() - .5);
+const arr_06 = [0, 1, 2, 3, 4, 5].slice().sort(() =>Math.random() - .5);
 // arr => [3, 4, 0, 5, 1, 2]
 
 
 // 29.清空数组
-const arr = [0, 1, 2];
-arr.length = 0;
+const arr_07 = [0, 1, 2];
+arr_07.length = 0;
 // arr => []
 
 
 // 30.截断数组
-const arr = [0, 1, 2];
-arr.length = 2;
+const arr_08 = [0, 1, 2];
+arr_08.length = 2;
 // arr => [0, 1]
 
 
 
 // 31.交换赋值
-let a = 0;
-let b = 1;
-[a, b] = [b, a];
+let ab = 0;
+let bc = 1;
+[ab, bc] = [bc, ab];
 // a b => 1 0
 
 
 // 32.过滤空值      空值：undefined、null、""、0、false、NaN
-const arr = [undefined, null, "", 0, false, NaN, 1, 2].filter(Boolean);
+const arr_09 = [undefined, null, "", 0, false, NaN, 1, 2].filter(Boolean);
 // arr => [1, 2]
 
 
 
 // 33.异步累计
-asyncfunction Func(deps) {
+async function Func (deps) {
     return deps.reduce(async(t, v) => {
         const dep = await t;
         const version = await Todo(v);
@@ -258,35 +258,37 @@ asyncfunction Func(deps) {
         return dep;
     }, Promise.resolve({}));
 }
-const result = await Func(); // 需在async包围下使用
+async function ff () {
+  const result = await Func(); // 需在async包围下使用
+}
 
 
 
 
 // 34.数组首部插入成员
-let arr = [1, 2]; // 以下方法任选一种
-arr.unshift(0);
-arr = [0].concat(arr);
-arr = [0, ...arr];
-arr.splice(0,0,0)
+let _10 = [1, 2]; // 以下方法任选一种
+arr_10.unshift(0);
+arr_10 = [0].concat(arr_10);
+arr_10 = [0, ...arr_10];
+arr_10.splice(0,0,0)
 // arr => [0, 1, 2]
 
 
 
 // 35.数组尾部插入成员
-let arr = [0, 1]; // 以下方法任选一种
-arr.push(2);
-arr = arr.concat(2);
-arr.splice(arr.length,0)
-arr[arr.length] = 2;
-arr = [...arr, 2];
+let arr_11 = [0, 1]; // 以下方法任选一种
+arr_11.push(2);
+arr_11 = arr_11.concat(2);
+arr_11.splice(arr_11.length,0)
+arr_11[arr_11.length] = 2;
+arr_11 = [...arr_11, 2];
 // arr => [0, 1, 2]
 
 
 
 // 36.统计数组成员个数
-const arr = [0, 1, 1, 2, 2, 2];
-const count = arr.reduce((t, v) => {
+const arr_12 = [0, 1, 1, 2, 2, 2];
+const count = arr_12.reduce((t, v) => {
 	t[v] = t[v] ? ++t[v] : 1;
 	return t;
 }, {});
@@ -294,54 +296,54 @@ const count = arr.reduce((t, v) => {
 
 
 // 37.解构数组成员嵌套
-const arr = [0, 1, [2, 3, [4, 5]]];
-const [a, b, [c, d, [e, f]]] = arr;
+const arr_13 = [0, 1, [2, 3, [4, 5]]];
+const [a, b, [c, d, [e, f]]] = arr_13;
 // a b c d e f => 0 1 2 3 4 5
 
 
 // 38.解构数组成员别名
-const arr = [0, 1, 2];
-const { 0: a, 1: b, 2: c } = arr;
+const arr_14 = [0, 1, 2];
+const { 0: a, 1: b, 2: c } = arr_14;
 // a b c => 0 1 2
 
 
 
 // 39.解构数组成员默认值
 
-const arr = [0, 1, 2];
-const [a, b, c = 3, d = 4] = arr;
+const arr_15 = [0, 1, 2];
+const [a, b, c = 3, d = 4] = arr_15;
 // a b c d => 0 1 2 4
 
 
 
 // 40.获取随机数组成员
 
-const arr = [0, 1, 2, 3, 4, 5];
-const randomItem = arr[Math.floor(Math.random() * arr.length)];
+const arr_16 = [0, 1, 2, 3, 4, 5];
+const randomItem = arr_16[Math.floor(Math.random() * arr_16.length)];
 // randomItem => 1
 
 
 // 41.创建指定长度数组
 
-const arr = [...new Array(3).keys()];
+const arr_17 = [...new Array(3).keys()];
 // arr => [0, 1, 2]
 
 
 
 // 42.创建指定长度且值相等的数组
 
-const arr = newArray(3).fill(0);
+const arr_18 = newArray(3).fill(0);
 // arr => [0, 0, 0]
 
 
 
 // 43.reduce代替map和filter
 
-const _arr = [0, 1, 2];
+const _arr_02 = [0, 1, 2];
 
 // map
-const arr = _arr.map(v => v * 2);
-const arr = _arr.reduce((t, v) => {
+const arr_19 = _arr_02.map(v => v * 2);
+const arr_19 = _arr_02.reduce((t, v) => {
     t.push(v * 2);
     return t;
 }, []);
@@ -442,7 +444,7 @@ const { a, b: d, c: e } = obj;
 const obj = { a: 0, b: 1, c: 2 };
 const { a, b = 2, d = 3 } = obj;
 // a b d => 0 1 3
-Function Skill
+// Function Skill
 
 // 53.函数自执行
 
@@ -457,11 +459,11 @@ const Func = function() {}(); // 常用
 ~ function() {}();
 ! function() {}();
 
-newfunction() {};
-newfunction() {}();
-voidfunction() {}();
-typeoffunction() {}();
-deletefunction() {}();
+new function() {};
+new function() {}();
+void function() {}();
+typeof function() {}();
+delete function() {}();
 
 1, function() {}();
 1 ^ function() {}();
@@ -550,7 +552,9 @@ try {
 function AsyncTo(promise) {
     return promise.then(data => [null, data]).catch(err => [err]);
 }
-const [err, res] = await AsyncTo(Func());
+async function fa () {
+  const [err, res] = await AsyncTo(Func());
+}
 
 
 
@@ -562,7 +566,9 @@ function Func() {
         fetch("/comment")
     ]);
 }
-const [user, comment] = await Func(); // 需在async包围下使用
+async function f12 () {
+  const [user, comment] = await Func(); // 需在async包围下使用
+}
 
 
 
@@ -603,3 +609,8 @@ localStorage.setItem("love", JSON.stringify("I Love You"));
 // 66.输出一个键盘
 (_=>[..."`1234567890-=~~QWERTYUIOP[]\\~ASDFGHJKL;'~~ZXCVBNM,./~"].map(x=>(o+=`/${b='_'.repeat(w=x<y?2:' 667699'[x=["Bs","Tab","Caps","Enter"][p++]||'Shift',p])}\\|`,m+=y+(x+'    ').slice(0,w)+y+y,n+=y+b+y+y,l+=' __'+b)[73]&&(k.push(l,m,n,o),l='',m=n=o=y),m=n=o=y='|',p=l=k=[])&&k.join`
 `)()
+
+// 67. Node js 
+let util = require('util')
+let da = {name: 'xxk', age: 30, isRichMan: true}
+console.log(util.inspect(da))
